@@ -223,6 +223,15 @@ with st.sidebar:
         st.session_state.page = "Treaty"
         st.rerun()
 
+    if st.button(
+        "Exposure Reporting",
+        key="nav_exposure_reporting",
+        type="primary" if st.session_state.page == "Exposure Reporting" else "secondary",
+        use_container_width=True,
+    ):
+        st.session_state.page = "Exposure Reporting"
+        st.rerun()
+
 if st.session_state.page == "Home":
     st.markdown('<div class="page-eyebrow">Workspace</div>', unsafe_allow_html=True)
     st.markdown('<h1 class="page-title">Home</h1>', unsafe_allow_html=True)
@@ -259,8 +268,37 @@ if st.session_state.page == "Home":
     if st.button("Open Import Reinsured Lines", type="primary", key="open_reinsured_lines"):
         st.session_state.page = "Import Reinsured Lines"
         st.rerun()
+
+    st.write("")
+    st.markdown(
+        """
+        <section class="module-card">
+            <h2>Exposure Reporting</h2>
+            <p>Open the exposure reporting workspace.</p>
+        </section>
+        """,
+        unsafe_allow_html=True,
+    )
+    if st.button("Open Exposure Reporting", type="primary", key="open_exposure_reporting"):
+        st.session_state.page = "Exposure Reporting"
+        st.rerun()
 elif st.session_state.page == "Treaty":
     render_treaty()
+elif st.session_state.page == "Exposure Reporting":
+    st.markdown('<div class="page-eyebrow">Reporting</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<h1 class="page-title">Exposure Reporting</h1>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        '<p class="page-description">Your workspace for exposure reports.</p>',
+        unsafe_allow_html=True,
+    )
+    st.write("")
+    st.info(
+        "Exposure Reporting is ready for report configuration. "
+        "Report generation and data connections are not implemented yet."
+    )
 else:
     st.markdown('<div class="page-eyebrow">Import</div>', unsafe_allow_html=True)
     st.markdown(
